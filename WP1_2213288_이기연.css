@@ -1,0 +1,662 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/*메뉴*/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 100;
+}
+
+nav {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+}
+
+ /* 모바일 크기 유지 */
+.mobile-container {
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #f5f5f7;
+    position: relative;
+}
+
+/*하단 메뉴*/
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #eee;
+    z-index: 100;
+}
+
+footer {
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+footer span {
+    font-size: 12px;
+}
+
+footer a, footer button {
+    text-decoration: none;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+footer button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+}
+
+footer button i {
+    font-size: 16px;
+}
+
+footer button:focus {
+    outline: none;
+}
+
+
+/*① 메인페이지 */
+
+/* 프로필 */
+.profile-content {
+    padding-top: 60px;
+    padding-bottom: 5px;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url(2213288_집.jpg);
+    background-size: cover;
+    padding: 20px;
+    min-height: 300px;
+}
+
+/*프로필 추가하기*/
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px;
+    width: 350px;
+    height: 200px;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.profile-card img{
+    width: 100px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: rgb(145, 109, 94);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-link:hover {
+    transform: scale(1.05);
+}
+
+/*캐릭터*/
+.character {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+}
+
+.character img {
+    width: 150px;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    transition: all 0.2s ease;
+}
+
+.character img:hover {
+    animation: wobble 1s infinite;
+    cursor: pointer;
+}
+
+@keyframes wobble {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+/*캐릭터 정보*/
+.profile-info {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    margin: 10px;   
+    display: flex;
+    gap : 160px;
+    justify-content: center;
+}
+
+.named {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.named span {
+    font-size: 12px;
+}
+
+.sub-text {
+    color: #666;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.meet {
+    font-size: 13px;
+}
+
+.meet span {
+    font-weight: bold;
+    color: brown;
+}
+
+/*오늘의 기록*/
+.summary {
+    padding: 20px;
+    background: white;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.record-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: #b9aaaa;
+    color: #ffffff;
+    cursor: pointer;
+
+}
+
+.record-btn a {
+    text-decoration: none;
+}
+
+.card-container {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 15px;
+    height: 120px;
+    border-radius: 15px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card img {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.card:nth-child(1) { 
+    background: url('2213288_체크1.jpg'); 
+    background-size: cover;
+}
+
+.card:nth-child(2) { 
+    background: url('2213288_체크2.jpg'); 
+    background-size: cover;
+}
+
+.card:nth-child(3) { 
+    background: url('2213288_체크3.jpg'); 
+    background-size: cover;
+}
+
+/*② 기록페이지*/
+
+/*날짜 선택*/
+.date-input {
+    padding: 20px;
+}
+
+.date-input input[type="date"] {
+    margin-top: 60px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.mobile-container > p {
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/*간편 기록 - 버튼*/
+.record {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.record button {
+    border: 2px solid #ececec;
+    border-radius: 20px;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color:#666;
+}
+
+.record button:nth-child(1) {
+    background: url("2213288_체크1.jpg");
+    background-size: cover;
+}
+
+.record button:nth-child(2) {
+    background: url("2213288_체크2.jpg");
+    background-size: cover;
+}
+
+.record button:nth-child(3) {
+    background: url("2213288_체크3.jpg");
+    background-size: cover;
+}
+
+.record-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.record-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    animation: fadeIn 0.5s ease;
+}
+
+/*간편 기록 - 내용*/
+.record-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    animation: fadeIn 0.5s ease;
+}
+
+.record-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+
+.record-item h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.record-item p {
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*간편기록 - 삭제*/
+.delete-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    color: #cc0000;
+}
+
+/*내용 비었을 때*/
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.empty-state img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/*추가하기 - 버튼*/
+.submit {
+    position: fixed;
+    width: 420px;
+    bottom: 70px;
+    padding: 18px;
+    background: #b9aaaa;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color:white;
+}
+
+/* 기록 팝업창 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.modal-content h2{
+    text-align: center;
+    padding: 20px;
+    font-size:20px;
+    margin-bottom: 15px;
+    color:#7b6b6b;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color:#cc0000;
+}
+
+.tab-menu {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #7b6b6b;
+}
+
+.tab-button:hover {
+    color: #ccc;
+}
+
+.tab-button.active {
+    color: #4e4040;
+    border-bottom: 2px solid #4e4040;
+    font-weight: bold;
+}
+.ta
+b-content {
+    display: none;
+}
+
+label {
+    display: block;
+    margin: 2px 0;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input, .select-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tab-content input[type="time"] {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.select-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-btn {
+    background: #f0f0f0;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.select-btn.active {
+    background: #b9aaaa;
+    color: #fff;
+    padding:12px;
+    font-weight: bold;
+}
+
+.tab-content input[type="number"] {
+    margin-bottom: 20px;
+    padding: 12px;
+    width: 100px;
+}
+
+.save-btn {
+    background: #b9aaaa;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*③ 추가페이지*/
+.profile-form {
+    padding: 20px;
+    background: white;
+}
+
+.profile-form input, .profile-form select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.pet-type {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pet-type button {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    height: 150px;
+    font-weight: bold;
+    display: flex;          
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;  
+    cursor: pointer; 
+}
+
+.pet-type img {
+    width: 50px;
+}
+
+.pet-type button.active {
+    border-color: #b9aaaa;
+    background-color: rgb(220, 199, 187);
+}
+
+.pet-content {
+    margin-bottom: 20px;
+}
+
+.pet-content input[type="text"] {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.pet-content input[type="number"] {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.pet-content input[type="date"] {
+    padding: 10px;
+}
+
+.pet-content select {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.make {
+    width: 400px;
+    margin: -10px;
+    padding: 20px;
+    background: #b9aaaa;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.text {
+    margin-top:40px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    padding:20px;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pawgram-추가</title>
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/x-icon" href="2213288_로고.png">
+
+    <!-- 아이콘 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- 외부 css -->
+    <link rel="stylesheet" href="WP1_2213288_이기연.css" >
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="WP1_2213288_이기연_메인페이지.html"><img src="2213288_로고.png" alt="로고"></a>
+            </div>
+            <div class="menu">
+                <a href="#search"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+        </nav>
+    </header>
+    <div class="mobile-container">
+        <div class="profile-form">
+            <div class="text">
+                반려동물 프로필 추가
+            </div>
+
+            <div class="pet-type">
+                <button onclick="selectPetType('cat')" id="cat-btn">
+                    <img src="2213288_코리안숏헤어.png" alt="기록" class="btn-icon">고양이</button>
+                <button onclick="selectPetType('dog')" id="dog-btn">
+                    <img src="2213288_골든.png" alt="기록" class="btn-icon"> 
+                    강아지</button>
+            </div>
+
+            <div class = pet-content>            
+                <input type="hidden" id="pet-type" value="cat">
+                <p>이름</p>
+                <input type="text" id="pet-name" placeholder="이름을 입력해주세요">
+                <p>나이</p>
+                <input type="number" id="pet-age" placeholder="나이를 입력해주세요">
+                
+                <p>품종</p>
+                <select id="pet-breed">
+                    <option value="">품종을 선택해주세요</option>
+                </select>
+    
+                <p>생일</p>
+                <input type="date" id="pet-birth" placeholder="생일을 입력해주세요">
+            </div>
+            <button class="make" onclick="addProfile()">프로필 만들기</button>
+        </div>
+    </div>
+
+    <footer>
+        <a href="WP1_2213288_이기연_메인페이지.html">
+            <i class="fa-solid fa-house"></i>
+            <span>홈</span>
+        </a>
+        <a href="WP1_2213288_이기연_기록페이지.html">
+            <i class="fa-solid fa-bars"></i>
+            <span>기록</span>
+        </a>
+        <button onclick="reset()">
+            <i class="fa-solid fa-gear"></i>
+            <span>재설정</span>
+        </button>
+    </footer>
+
+<script>
+    let selectedPetType = 'cats'; // 기본값 설정
+    let breeds = {};
+
+
+    fetch('WP1_2213288_이기연_breeds.json') // JSON 파일 경로
+        .then(response =>response.json()) 
+        .then(data => {
+            breeds = data;
+            updateBreedOptions(selectedPetType);
+        })
+        .catch(error => {
+            console.error('JSON 데이터 불러오기 실패:', error);
+        });
+
+    // 품종 타입 선택 함수 수정
+    function selectPetType(type) {
+        // type이 'cat'이면 'cats'로, 'dog'면 'dogs'로 변환
+        selectedPetType = type === 'cat' ? 'cats' : 'dogs';
+        
+        document.getElementById('cat-btn').classList.toggle('active', type === 'cat');
+        document.getElementById('dog-btn').classList.toggle('active', type === 'dog');
+        
+        console.log('선택된 타입:', selectedPetType);
+        console.log('사용 가능한 품종:', breeds[selectedPetType]);
+        
+        updateBreedOptions(selectedPetType);
+    }
+
+    function updateBreedOptions(petType) {
+        const breedSelect = document.getElementById('pet-breed');
+        breedSelect.innerHTML = '<option value="">품종을 선택해주세요</option>';
+
+        if (breeds[petType]) {
+            breeds[petType].forEach(breed => {
+                const option = document.createElement('option');
+                option.value = breed.name;
+                option.textContent = breed.name;
+                breedSelect.appendChild(option);
+            });
+        }
+    }
+
+    // 프로필 추가
+    function addProfile() {
+        const name = document.getElementById('pet-name').value;
+        const age = document.getElementById('pet-age').value;
+        const breed = document.getElementById('pet-breed').value;
+        const birthDate = document.getElementById('pet-birth').value;
+
+        if (!name || !age || !breed || !birthDate) {
+            alert('모든 정보를 입력해주세요!');
+            return;
+        }
+
+        // 생일로부터 현재까지의 일수 계산
+        const birthDateObj = new Date(birthDate);
+        const today = new Date();
+        const daysLived = Math.floor((today - birthDateObj) / (1000 * 60 * 60 * 24));
+
+        // 기존 프로필 목록 불러오기
+        const profiles = JSON.parse(localStorage.getItem('petProfiles') || '[]');
+
+        // 새 프로필 생성
+        const newProfile = {
+            type: selectedPetType,
+            name: name,
+            age: age,
+            breed: breed,
+            birthDate: birthDate,
+            daysLived: daysLived,
+        };
+
+        // 로컬 스토리지에 저장
+        profiles.push(newProfile);
+        localStorage.setItem('petProfiles', JSON.stringify(profiles));
+
+        // 메인 페이지로 리다이렉트
+        window.location.href = 'WP1_2213288_이기연_메인페이지.html';
+    }
+
+    function reset() {
+        if (confirm('모든 기록이 삭제됩니다. 정말 초기화하시겠습니까?')) {
+            localStorage.removeItem('petRecords');  // localStorage에서 데이터 삭제
+            records = {};  // 현재 메모리의 records 객체 초기화
+            displayRecords();  // 화면 갱신
+            alert('모든 기록이 초기화되었습니다.');
+        }
+    }
+
+</script>
+</body>
+</html>

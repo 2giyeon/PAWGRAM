@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pawgram -기록</title>
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/x-icon" href="2213288_로고.png">
+
+    <!-- 아이콘 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- 외부 css -->
+    <link rel="stylesheet" href="WP1_2213288_이기연.css" >
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="WP1_2213288_이기연_메인페이지.html"><img src="2213288_로고.png" alt="로고"></a>
+            </div>
+            <div class="menu">
+                <a href="#search"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-container">
+        <div class="date-input">
+            <input type="date" id="recordDate" onchange="changeDate(this.value)">
+        </div>
+        <p>간편기록</p>
+        <div class="record">
+            <button onclick="addRecord('산책')">산책 +</button>
+            <button onclick="addRecord('식사')">식사 +</button>
+            <button onclick="addRecord('배변')">배변 +</button>
+        </div>
+        
+        <div class="empty-state" id="emptyState">
+            <img src="2213288_달력.png" alt="달력" class="calendar-img">
+            <p>입력된 기록이 없어요!</p>    
+        </div>
+
+        <ul class="record-list" id="recordList">
+        </ul>
+
+        <button class="submit" onclick="openModal()">추가하기</button>
+    </div>
+
+    <div id="logModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>새로 기록하기</h2>
+    
+            <div class="tab-menu">
+                <button class="tab-button active" onclick="selectTab('식사')">식사</button>
+                <button class="tab-button" onclick="selectTab('산책')">산책</button>
+                <button class="tab-button" onclick="selectTab('배변')">배변</button>
+            </div>
+    
+            <div class="tab-content" id="tab-식사">
+                <label>식사 정보</label>
+                <div class="select-group">
+                    <button class="select-btn active" onclick="active(this)">사료</button>
+                    <button class="select-btn" onclick="active(this)">간식</button>
+                    <button class="select-btn" onclick="active(this)">영양제</button>
+                    <button class="select-btn" onclick="active(this)">기타</button>
+                </div>
+                <label>메모 (선택)</label>
+                <input type="text" id = "식사메모" placeholder="메모를 입력해주세요.">
+                <label>식사 시간</label>
+                <input type="time" id = "식사시간">
+            </div>
+    
+            <div class="tab-content" id="tab-산책" style="display: none;">
+                <label>산책 장소 (선택)</label>
+                <input type="text" id = "산책장소" placeholder="산책 장소를 입력해주세요.">
+                <label>산책 시간</label>
+                <div class="time-range">
+                    <input type="time">
+                    <input type="number" placeholder="분"> 분 동안 산책했어요.
+                </div>
+            </div>
+    
+            <div class="tab-content" id="tab-배변" style="display: none;">
+                <label>배변 구분</label>
+                <div class="select-group">
+                    <button class="select-btn active" onclick="active(this)">소변</button>
+                    <button class="select-btn" onclick="active(this)">대변</button>
+                </div>
+                <label>메모 (선택)</label>
+                <input type="text" id = "배변메모" placeholder="메모를 입력해주세요.">
+                <label>배변 시간</label>
+                <input type="time" id = "배변시간">
+            </div>
+    
+            <button class="save-btn" onclick="saveRecord()">기록 저장하기</button>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <a href="WP1_2213288_이기연_메인페이지.html">
+            <i class="fa-solid fa-house"></i>
+            <span>홈</span>
+        </a>
+        <a href="WP1_2213288_이기연_기록페이지.html">
+            <i class="fa-solid fa-bars"></i>
+            <span>기록</span>
+        </a>
+        <button onclick="reset()">
+            <i class="fa-solid fa-gear"></i>
+            <span>재설정</span>
+        </button>
+    </footer>
+
+    <script src = "WP1_2213288_이기연_기록페이지.js"> </script>
+
+</body>
+</html>

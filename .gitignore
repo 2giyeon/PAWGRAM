@@ -1,0 +1,11 @@
+# Node.js 관련
+node_modules/
+npm-debug.log
+
+# 환경설정 파일들
+.DS_Store
+.vscode/
+.env
+
+# 기타 필요 없는 것들
+*.log
