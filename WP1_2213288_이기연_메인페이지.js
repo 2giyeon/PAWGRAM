@@ -97,12 +97,13 @@
         setInterval(updateCounts, 1000);
     });
 
+    //초기화
     function reset() {
-        if (confirm('모든 기록이 삭제됩니다. 정말 초기화하시겠습니까?')) {
-            localStorage.removeItem('petRecords');  // localStorage에서 데이터 삭제
-            records = {};  // 현재 메모리의 records 객체 초기화
-            displayRecords();  // 화면 갱신
-            alert('모든 기록이 초기화되었습니다.');
+        if (confirm('모든 정보가 삭제됩니다. 정말 초기화하시겠습니까?')) {
+            localStorage.removeItem('petRecords');   
+            localStorage.removeItem('petProfiles');  
+    
+            location.reload();  
         }
     }
 
